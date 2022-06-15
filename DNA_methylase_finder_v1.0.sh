@@ -67,7 +67,7 @@ elif [ ${INPUT_TYPE} == "AA" ] ; then
 	fi
 
 	if [ -s ${BASE_DIRECTORY}/${INPUT_AA} ] ; then 
-		cp ${BASE_DIRECTORY}/${INPUT_AA} {BASE_DIRECTORY}/${OUTPUT_DIRECTORY}/  
+		cp ${BASE_DIRECTORY}/${INPUT_AA} ${BASE_DIRECTORY}/${OUTPUT_DIRECTORY}/  
 	else  
 		cp ${INPUT_AA} ${BASE_DIRECTORY}/${OUTPUT_DIRECTORY}/ ; 
 		INPUT_AA=$( basename $INPUT_AA ) 

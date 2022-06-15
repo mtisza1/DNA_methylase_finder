@@ -6,11 +6,13 @@ Nucleotide contigs/genomes (`.fna`) or amino acids (`.faa`).
 
 ## Output (important files)
 **All input types:**
+
 `.DNA_methylases.combined.summary.tsv` : summary table of all detected DNA methylases, their coordinates, subtype, and specificity. Open in text editor or Excel, etc.
 
 `.DNA_methylases.combined.faa` : multi-fasta of amino acid sequences of predicted DNA methylase genes (including merged fragments)
 
 **Nucleotide inputs only:**
+
 `neighborhood_annotations/*neighbors.gb` : DNA methylase gene neighborhood map of DNA methylase and surrounding genes. Good for determining if each DNA methylase gene is part of a Restriction Modification System. Open in GenBank file/plasmid viewer, e.g. SnapGene Viewer or UGENE.
 
 
@@ -78,15 +80,15 @@ python DNA_methylase_finder/run_DNA_methylase_finder.py -it nucl -f MY_CONTIGS.f
 |SRS022713_8242_47_ | Type_I | SRS022713_8242 | 42714 | 44282 | + | not_found | not_found | not_found|
 |SRS022713_870_47_ | Type_II | SRS022713_870 | 56482 | 57627 | + | not_found | not_found | not_found|
 |SRS022713_130_5_@SRS022713_130_7_#merged | Type_II | SRS022713_130 | 56482 | 57627 | + | not_found | not_found | not_found|
-|SRS022713_7801_31_@SRS022713_7801_32_#merged | Type_I | SRS022713_7801 | 56482 | 57627 | + | not_found | |not_found | not_found|
+|SRS022713_7801_31_@SRS022713_7801_32_#merged | Type_I | SRS022713_7801 | 56482 | 57627 | + | not_found | not_found | not_found|
 |SRS022713_7936_6_@SRS022713_7936_7_#merged | Type_IIG | SRS022713_7936 | 56482 | 57627 | + | not_found | not_found | not_found|
 
 
 ### Tips
-* Setting `--neighborhoods False` will reduce the runtime by quite a bit but no neighborhood maps will be generated. It is the suggested for scanning large databases for DNA methylase genes.
+* Setting `--neighborhoods False` will reduce the runtime by quite a bit but no neighborhood maps will be generated. It is the suggested setting for scanning large databases for DNA methylase genes.
 * Increasing number of CPUs available with `-t` will make the tool run faster.
 * See something weird? Open an Issue on this repo describing your problem in detail.
-
+* A large majority of prkaryotic genes with DNA methylase domains methylate genomic DNA with a particular motif specificity. Some of these genes with not be "active" at all times. A small number of these genes are not involved in motif-specific methylation (they could be involved in DNA repair).
 
 ## Help Menu
 ```
