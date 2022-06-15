@@ -59,7 +59,7 @@ python DNA_methylase_finder/run_DNA_methylase_finder.py -it nucl -f MY_CONTIGS.f
 ```
 
 ## Summary table example
-```
+
 |gene name | sub-type | contig | start position | end position | orientation | motif guess | AAI to top hit | AF to top hit
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 |SRS022713_1554_3_ | Type_III | SRS022713_1554 | 3503 | 5047 | - | not_found | not_found | not_found|
@@ -80,7 +80,7 @@ python DNA_methylase_finder/run_DNA_methylase_finder.py -it nucl -f MY_CONTIGS.f
 |SRS022713_130_5_@SRS022713_130_7_#merged | Type_II | SRS022713_130 | 56482 | 57627 | + | not_found | not_found | not_found|
 |SRS022713_7801_31_@SRS022713_7801_32_#merged | Type_I | SRS022713_7801 | 56482 | 57627 | + | not_found | |not_found | not_found|
 |SRS022713_7936_6_@SRS022713_7936_7_#merged | Type_IIG | SRS022713_7936 | 56482 | 57627 | + | not_found | not_found | not_found|
-```
+
 
 ### Tips
 * Setting `--neighborhoods False` will reduce the runtime by quite a bit but no neighborhood maps will be generated. It is the suggested for scanning large databases for DNA methylase genes.
