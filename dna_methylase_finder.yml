@@ -1,0 +1,14 @@
+name: dna_methylase_finder
+channels:
+  - conda-forge
+  - bioconda
+  - r
+  - defaults
+dependencies:
+  - bcbio-gff
+  - biopython
+  - blast
+  - hmmer
+  - bioawk
+  - python
+  - prodigal
