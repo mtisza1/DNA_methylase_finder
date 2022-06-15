@@ -7,6 +7,7 @@ Nucleotide contigs/genomes (`.fna`) or amino acids (`.faa`).
 ## Output (important files)
 **All input types:**
 `.DNA_methylases.combined.summary.tsv` : summary table of all detected DNA methylases, their coordinates, subtype, and specificity. Open in text editor or Excel, etc.
+
 `.DNA_methylases.combined.faa` : multi-fasta of amino acid sequences of predicted DNA methylase genes (including merged fragments)
 
 **Nucleotide inputs only:**
@@ -23,7 +24,7 @@ NOTE: I have only tested this on a Linux system. I imagine it will only work on 
 
 2. Clone this repo
 
-`git clone !`
+`git clone https://github.com/mtisza1/DNA_methylase_finder.git`
 
 3. Change to the `DNA_methylase_finder` directory:
 
@@ -34,18 +35,63 @@ NOTE: I have only tested this on a Linux system. I imagine it will only work on 
 
 `conda env create --file dna_methylase_finder.yml`
 
+NOTE: if you can't use conda, you could probably install the dependencies manually with little issue (listed in .yml file). Python 3 required.
+
 5. Download and unpack the databases (3.5 Gb compressed, 11 Gb decompressed):
 
 ```
-wget ! 
+# you should still be in the DNA_methylase_finder directory
+wget https://zenodo.org/record/6647341/files/DNA_methylase_finder_DBS_v1.0.tar.gz 
 tar -xvf DNA_methylase_finder_DBS_v1.0.tar.gz
+rm DNA_methylase_finder_DBS_v1.0.tar.gz
 ```
 
 ## Usage
 
+1. Activate the conda environment:
+
+`conda activate dna_methylase_finder`
+
+2. Run the python wrapper (specify the path to `DNA_methylase_finder` when runnning). Probably best not to do runs from within the repo directory.
+
+```
+python DNA_methylase_finder/run_DNA_methylase_finder.py -it nucl -f MY_CONTIGS.fna -r MY_CONTIGS_DMF1 -t 16
+```
+
+## Summary table example
+```
+gene name  sub-type  contig  start position  end position  orientation  motif guess  AAI to top hit  AF to top hit
+SRS022713_1554_3_  Type_III  SRS022713_1554  3503  5047  -  not_found  not_found  not_found
+SRS022713_1833_25_  Type_II  SRS022713_1833  27134  28228  -  RAATTY  99.73 AAI  99.73 AF
+SRS022713_1838_24_  Type_II  SRS022713_1838  18371  19126  -  not_found  not_found  not_found
+SRS022713_255_49_  Type_II  SRS022713_255  43520  44371  +  not_found  not_found  not_found
+SRS022713_430_41_  Type_II  SRS022713_430  19582  21285  -  not_found  not_found  not_found
+SRS022713_469_5_  Unknown  SRS022713_469  2240  2722  +  not_found  not_found  not_found
+SRS022713_4879_20_  Type_I  SRS022713_4879  21121  22674  +  GAYNNNNNNNTAYG  88.91 AAI  99.23 AF
+SRS022713_4903_2_  Type_II  SRS022713_4903  431  1150  +  not_found  not_found  not_found
+SRS022713_511_9_  Type_II  SRS022713_511  15370  16641  +  not_found  not_found  not_found
+SRS022713_5642_14_  Type_IIG  SRS022713_5642  16963  20844  -  not_found  not_found  not_found
+SRS022713_5668_33_  Type_I  SRS022713_5668  37289  38794  +  not_found  not_found  not_found
+SRS022713_5789_1_  Type_II  SRS022713_5789  4  2946  -  not_found  not_found  not_found
+SRS022713_6589_13_  Type_II  SRS022713_6589  14021  14851  -  not_found  not_found  not_found
+SRS022713_6589_18_  Type_II  SRS022713_6589  18841  19410  -  GATC  99.47 AAI  99.47 AF
+SRS022713_6852_42_  Type_II  SRS022713_6852  30747  31550  -  not_found  not_found  not_found
+SRS022713_7245_21_  Type_IIG  SRS022713_7245  27821  29779  -  not_found  not_found  not_found
+SRS022713_7606_11_  Type_II  SRS022713_7606  18848  26530  +  not_found  not_found  not_found
+SRS022713_7606_6_  Type_II  SRS022713_7606  8461  9021  +  GATC  91.94 AAI  99.47 AF
+SRS022713_7854_31_  Type_II  SRS022713_7854  26974  27720  -  GATC  82.66 AAI  99.6 AF
+SRS022713_7854_34_  Type_II  SRS022713_7854  29433  30503  -  not_found  not_found  not_found
+SRS022713_8242_47_  Type_I  SRS022713_8242  42714  44282  +  not_found  not_found  not_found
+SRS022713_8331_39_  Type_II  SRS022713_8331  28605  29195  -  not_found  not_found  not_found
+SRS022713_8331_43_  Unknown  SRS022713_8331  30141  30602  -  not_found  not_found  not_found
+SRS022713_870_47_  Type_II  SRS022713_870  56482  57627  +  not_found  not_found  not_found
+SRS022713_130_5_@SRS022713_130_7_#merged  Type_II  SRS022713_130  56482  57627  +  not_found  not_found  not_found
+SRS022713_7801_31_@SRS022713_7801_32_#merged  Type_I  SRS022713_7801  56482  57627  +  not_found  not_found  not_found
+SRS022713_7936_6_@SRS022713_7936_7_#merged  Type_IIG  SRS022713_7936  56482  57627  +  not_found  not_found  not_found
+```
 
 ### Tips
-* Setting `--neighborhoods False` will reduce the runtime by quite a bit and is suggested for finding DNA methylase genes in large datasets
+* Setting `--neighborhoods False` will reduce the runtime by quite a bit but no neighborhood maps will be generated. It is the suggested for scanning large databases for DNA methylase genes.
 * Increasing number of CPUs available with `-t` will make the tool run faster.
 * See something weird? Open an Issue on this repo describing your problem in detail.
 
