@@ -281,15 +281,18 @@ if [ -s ${INPUT_AA%.faa}.DNA_methylases.combined.faa ] && [ -s ${INPUT_AA%.faa}.
 		if [ -s ${INPUT_NUCL%.fna}.genes.fna ] ; then
 			if echo "$LINE" | grep -q "#merged" ; then
 				NUMBER_ATS=$( echo "$LINE" | grep -o "@" | wc -l )
-				#echo "$LINE $NUMBER_ATS"
+				echo "$LINE $NUMBER_ATS"
 				CONTIG=$( echo "$LINE" | cut -d "@" -f1 | sed 's/\(.*\)_[0-9]\{1,9\}_/\1/' )
 				if [ "$NUMBER_ATS" == 1 ] ; then
 					echo "$LINE" | sed 's/#merged//g ; s/@/ /g' | while read ONE TWO ; do
+						echo "$ONE $TWO"
 						ONEQ=${ONE::-1}
 						TWOQ=${TWO::-1}
+						echo "$ONEQ $TWOQ"
 						STARTQ=$( grep -e "${ONEQ} # " -e "${TWOQ} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f2 | sort -g | head -n1 )
 						ENDQ=$( grep -e "${ONEQ} # " -e "${TWOQ} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f3 | sort -g | tail -n1 )
 						ORIENT=$( grep "${ONEQ} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f4 | sed 's/-1/-/g ; s/1/+/g' )
+						echo $STARTQ $ENDQ $ORIENT
 					done
 				else
 					echo "$LINE" | sed 's/#merged//g ; s/@/ /g' | while read ONE TWO THREE ; do
