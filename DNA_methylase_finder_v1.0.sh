@@ -280,8 +280,8 @@ if [ -s ${INPUT_AA%.faa}.DNA_methylases.combined.faa ] && [ -s ${INPUT_AA%.faa}.
 		
 		if [ -s ${INPUT_NUCL%.fna}.genes.fna ] ; then
 			if echo "$LINE" | grep -q "#merged" ; then
-				NUMBER_ATS=$( echo "$LINE" | grep -o "@" | wc | bc )
-				echo "$LINE $NUMBER_ATS"
+				NUMBER_ATS=$( echo "$LINE" | grep -o "@" | wc -l )
+				#echo "$LINE $NUMBER_ATS"
 				CONTIG=$( echo "$LINE" | cut -d "@" -f1 | sed 's/\(.*\)_[0-9]\{1,9\}_/\1/' )
 				if [ "$NUMBER_ATS" == 1 ] ; then
 					echo "$LINE" | sed 's/#merged//g ; s/@/ /g' | while read ONE TWO ; do
