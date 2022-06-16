@@ -285,15 +285,20 @@ if [ -s ${INPUT_AA%.faa}.DNA_methylases.combined.faa ] && [ -s ${INPUT_AA%.faa}.
 				CONTIG=$( echo "$LINE" | cut -d "@" -f1 | sed 's/\(.*\)_[0-9]\{1,9\}_/\1/' )
 				if [ "$NUMBER_ATS" == 1 ] ; then
 					echo "$LINE" | sed 's/#merged//g ; s/@/ /g' | while read ONE TWO ; do
-						STARTQ=$( grep -e "${ONE::-1} # " -e "${TWO::-1} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f2 | sort -g | head -n1 )
-						ENDQ=$( grep -e "${ONE::-1} # " -e "${TWO::-1} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f3 | sort -g | tail -n1 )
-						ORIENT=$( grep "${ONE::-1} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f4 | sed 's/-1/-/g ; s/1/+/g' )
+						ONEQ=${ONE::-1}
+						TWOQ=${TWO::-1}
+						STARTQ=$( grep -e "${ONEQ} # " -e "${TWOQ} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f2 | sort -g | head -n1 )
+						ENDQ=$( grep -e "${ONEQ} # " -e "${TWOQ} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f3 | sort -g | tail -n1 )
+						ORIENT=$( grep "${ONEQ} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f4 | sed 's/-1/-/g ; s/1/+/g' )
 					done
 				else
 					echo "$LINE" | sed 's/#merged//g ; s/@/ /g' | while read ONE TWO THREE ; do
-						STARTQ=$( grep -e "${ONE::-1} # " -e "${TWO::-1} # " -e "${THREE::-1} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f2 | sort -g | head -n1 )
-						ENDQ=$( grep -e "${ONE::-1} # " -e "${TWO::-1} # " -e "${THREE::-1} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f3 | sort -g | tail -n1 )
-						ORIENT=$( grep "${ONE::-1} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f4 | sed 's/-1/-/g ; s/1/+/g' )
+						ONEQ=${ONE::-1}
+						TWOQ=${TWO::-1}
+						THREEQ=${THREE::-1}
+						STARTQ=$( grep -e "${ONEQ} # " -e "${TWOQ} # " -e "${THREEQ} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f2 | sort -g | head -n1 )
+						ENDQ=$( grep -e "${ONEQ} # " -e "${TWOQ} # " -e "${THREEQ} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f3 | sort -g | tail -n1 )
+						ORIENT=$( grep "${ONEQ} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f4 | sed 's/-1/-/g ; s/1/+/g' )
 					done
 				fi
 			else
