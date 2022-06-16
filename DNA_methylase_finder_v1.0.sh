@@ -277,22 +277,23 @@ if [ -s ${INPUT_AA%.faa}.DNA_methylases.combined.faa ] && [ -s ${INPUT_AA%.faa}.
 		else 
 			SUBTYPE="Unknown" ; 
 		fi ; 
-		
+		if grep -q "$LINE" ${INPUT_AA%.faa}.DNA_methylases.combined.w_motifs.${PID}_${COV}.top.out ; then 
+			MOTIF=$( grep "$LINE" ${INPUT_AA%.faa}.DNA_methylases.combined.w_motifs.${PID}_${COV}.top.out | awk '{OFS="\t"}{FS="\t"}{print $2, $5" AAI", $6" AF"}' ) ; 
+		else 
+			MOTIF="not_found	not_found	not_found" ; 
+		fi ; 
 		if [ -s ${INPUT_NUCL%.fna}.genes.fna ] ; then
 			if echo "$LINE" | grep -q "#merged" ; then
 				NUMBER_ATS=$( echo "$LINE" | grep -o "@" | wc -l )
-				echo "$LINE $NUMBER_ATS"
 				CONTIG=$( echo "$LINE" | cut -d "@" -f1 | sed 's/\(.*\)_[0-9]\{1,9\}_/\1/' )
 				if [ "$NUMBER_ATS" == 1 ] ; then
 					echo "$LINE" | sed 's/#merged//g ; s/@/ /g' | while read ONE TWO ; do
-						echo "$ONE $TWO"
 						ONEQ=${ONE::-1}
 						TWOQ=${TWO::-1}
-						echo "$ONEQ $TWOQ"
 						STARTQ=$( grep -e "${ONEQ} # " -e "${TWOQ} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f2 | sort -g | head -n1 )
 						ENDQ=$( grep -e "${ONEQ} # " -e "${TWOQ} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f3 | sort -g | tail -n1 )
 						ORIENT=$( grep "${ONEQ} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f4 | sed 's/-1/-/g ; s/1/+/g' )
-						echo $STARTQ $ENDQ $ORIENT
+						echo -e "$LINE\t$SUBTYPE\t${CONTIG}\t${STARTQ}\t${ENDQ}\t${ORIENT}\t$MOTIF" ;
 					done
 				else
 					echo "$LINE" | sed 's/#merged//g ; s/@/ /g' | while read ONE TWO THREE ; do
@@ -302,6 +303,7 @@ if [ -s ${INPUT_AA%.faa}.DNA_methylases.combined.faa ] && [ -s ${INPUT_AA%.faa}.
 						STARTQ=$( grep -e "${ONEQ} # " -e "${TWOQ} # " -e "${THREEQ} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f2 | sort -g | head -n1 )
 						ENDQ=$( grep -e "${ONEQ} # " -e "${TWOQ} # " -e "${THREEQ} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f3 | sort -g | tail -n1 )
 						ORIENT=$( grep "${ONEQ} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f4 | sed 's/-1/-/g ; s/1/+/g' )
+						echo -e "$LINE\t$SUBTYPE\t${CONTIG}\t${STARTQ}\t${ENDQ}\t${ORIENT}\t$MOTIF" ;
 					done
 				fi
 			else
@@ -310,20 +312,17 @@ if [ -s ${INPUT_AA%.faa}.DNA_methylases.combined.faa ] && [ -s ${INPUT_AA%.faa}.
 				STARTQ=$( grep "${PROD_FMT} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f2 )
 				ENDQ=$( grep "${PROD_FMT} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f3 )
 				ORIENT=$( grep "${PROD_FMT} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f4 | sed 's/-1/-/g ; s/1/+/g' )
-
+				echo -e "$LINE\t$SUBTYPE\t${CONTIG}\t${STARTQ}\t${ENDQ}\t${ORIENT}\t$MOTIF" ;
 			fi
 		else
 			STARTQ="NA"
 			ENDQ="NA"
 			ORIENT="NA"
+			echo -e "$LINE\t$SUBTYPE\t${CONTIG}\t${STARTQ}\t${ENDQ}\t${ORIENT}\t$MOTIF" ;
 		fi
 
-		if grep -q "$LINE" ${INPUT_AA%.faa}.DNA_methylases.combined.w_motifs.${PID}_${COV}.top.out ; then 
-			MOTIF=$( grep "$LINE" ${INPUT_AA%.faa}.DNA_methylases.combined.w_motifs.${PID}_${COV}.top.out | awk '{OFS="\t"}{FS="\t"}{print $2, $5" AAI", $6" AF"}' ) ; 
-		else 
-			MOTIF="not_found	not_found	not_found" ; 
-		fi ; 
-		echo -e "$LINE\t$SUBTYPE\t${CONTIG}\t${STARTQ}\t${ENDQ}\t${ORIENT}\t$MOTIF" ; 
+
+		 
 	done >> ${INPUT_AA%.faa}.DNA_methylases.combined.summary.tsv
 else 
 	echo "not all files required for summary table found."
