@@ -1,11 +1,14 @@
 # DNA Methylase Finder
-DNA Methylase Finder is a tool to detect/predict DNA methylase genes of prokaryotes. More specifically, it will detect genes with DNA methylase DOMAINS by querying their amino acid sequences. **BUT WHY?**
+DNA Methylase Finder is a tool to detect/predict DNA methylase genes of prokaryotes. More specifically, it will detect genes with DNA methylase DOMAINS by querying their amino acid sequences. `BUT WHY?`
 
 
-**:skull_and_crossbones: There are many types of methylases, not just DNA methylases (i.e. RNA methylases)
-:ghost: Common gene annotation tools like prokka, and even PGAP, usually label genes as "methylase", therefor the annotation specificity is ambiguous
-:space_invader: Many genes with DNA methylase domains have other domains (i.e. helicases or nucleases), and the annotation of the other domain is used as the gene label from prokka and PGAP.
-:boom: DNA methylation in prokaryotes is proving to be interesting, especially as new technologies enable surveying of 6mA, 5mC, and 4mC methylation marks/motifs. Understand the genes responsible for these marks is important..**
+**:skull_and_crossbones: There are many types of methylases, not just DNA methylases (i.e. RNA methylases)**
+
+**:ghost: Common gene annotation tools like prokka, and even PGAP, usually label genes as "methylase", therefor the annotation specificity is ambiguous**
+
+**:space_invader: Many genes with DNA methylase domains have other domains (i.e. helicases or nucleases), and the annotation of the other domain is used as the gene label from prokka and PGAP.**
+
+**:boom: DNA methylation in prokaryotes is proving to be interesting, especially as new technologies enable surveying of 6mA, 5mC, and 4mC methylation marks/motifs. Understand the genes responsible for these marks is important..**
 
 
 
