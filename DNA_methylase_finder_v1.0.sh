@@ -43,11 +43,14 @@ if [ ${INPUT_TYPE} == "nucl" ] ; then
 		echo "A .fna file not provided. Exiting."
 		exit
 	fi
-	if [ -s ${BASE_DIRECTORY}/${INPUT_NUCL} ] ; then 
+	B_NUCL=$( basename $INPUT_NUCL )
+	if [ -s ${B_NUCL} ] ; then 
+		INPUT_NUCL=$( basename $INPUT_NUCL )
 		echo ${BASE_DIRECTORY}/${INPUT_NUCL} ; 
 	else  
 		cp ${INPUT_NUCL} ${BASE_DIRECTORY}/ ; 
 		INPUT_NUCL=$( basename $INPUT_NUCL ) 
+		echo ${BASE_DIRECTORY}/${INPUT_NUCL} ; 
 	fi
 	cd $OUTPUT_DIRECTORY
 	## run prodigal
@@ -65,9 +68,10 @@ elif [ ${INPUT_TYPE} == "AA" ] ; then
 		echo "A .faa file not provided. Exiting."
 		exit
 	fi
-
-	if [ -s ${BASE_DIRECTORY}/${INPUT_AA} ] ; then 
-		cp ${BASE_DIRECTORY}/${INPUT_AA} ${BASE_DIRECTORY}/${OUTPUT_DIRECTORY}/  
+	B_AA=$( basename $INPUT_AA )
+	if [ -s ${B_AA} ] ; then 
+		cp ${BASE_DIRECTORY}/${INPUT_AA} ${BASE_DIRECTORY}/${OUTPUT_DIRECTORY}/
+		INPUT_AA=$( basename $INPUT_AA )
 	else  
 		cp ${INPUT_AA} ${BASE_DIRECTORY}/${OUTPUT_DIRECTORY}/ ; 
 		INPUT_AA=$( basename $INPUT_AA ) 
