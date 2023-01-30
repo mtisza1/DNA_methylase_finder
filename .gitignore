@@ -1,0 +1,7 @@
+.DS_Store
+methylase_hmms/
+cdd_plus_hmms/
+motif_protein_blastp/
+subtype_hmms/
+specificity_subunit_hmms/
+restriction_enzyme_hmms/

@@ -61,6 +61,18 @@ tar -xvf DNA_methylase_finder_DBS_v1.0.tar.gz
 rm DNA_methylase_finder_DBS_v1.0.tar.gz
 ```
 
+### versions of packages/tools that this tool was tested on
+
+```
+bcbio-gff v0.6.9
+bioawk v1.0
+biopython v1.78
+blast v2.12
+hmmer v3.3.2
+python v3.9.7
+prodigal-2.6.3
+```
+
 ## Usage
 
 1. Activate the conda environment:
