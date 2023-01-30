@@ -28,6 +28,9 @@ Nucleotide contigs/genomes (`.fna`) or amino acids (`.faa`).
 
 `neighborhood_annotations/*neighbors.gb` : DNA methylase gene neighborhood map of DNA methylase and surrounding genes. Good for determining if each DNA methylase gene is part of a Restriction Modification System. Open in GenBank file/plasmid viewer, e.g. SnapGene Viewer or UGENE.
 
+## Schematic
+![alt text](../main/dna_methylase_finder_schematic1.pdf)
+
 
 ## Installation instructions
 
