@@ -21,16 +21,16 @@ pathname = os.path.dirname(sys.argv[0])
 find_methylase_script_path = os.path.abspath(pathname)      
 print(find_methylase_script_path) 
 
-parser = argparse.ArgumentParser(description='DNA Methylase Finder, v1.0')
+parser = argparse.ArgumentParser(description='DNA Methylase Finder v' + str(__version__))
 
-required_args = parser.add_argument_group(' REQUIRED ARGUMENTS for DNA Methylase Finder, v1.0 ')
+required_args = parser.add_argument_group(' REQUIRED ARGUMENTS for DNA Methylase Finder, v' + str(__version__))
 
 required_args.add_argument("-it", "--input_type", dest="INPUT_TYPE", type=str, required=True, help='OPTIONS: nucl, AA -- nucl PREFERRED! nucl is a nucleotide fasta file .fna extension. Each header must be unique before the first space character. AA is an amino acid fasta file with fasta file .fna extension. Each header must be unique before the first space character.')
 required_args.add_argument("-f", "--input_file", dest="INPUT_FILE", type=str, required=True, help='nucl file with .fna extenstion, prodigal directory, or AA seq file with .faa extension.')
 required_args.add_argument("-r", "--run_title", dest="run_title", type=str, required=True, help='Name of this run. A directory of this name will be created. Must be unique from older runs or older run will be renamed. Must consist of ONLY letters, numbers and underscores (_)')
 
 #-#-#
-optional_args = parser.add_argument_group(' OPTIONAL ARGUMENTS for DNA Methylase Finder, v1.0')
+optional_args = parser.add_argument_group(' OPTIONAL ARGUMENTS for DNA Methylase Finder, v' + str(__version__))
 
 optional_args.add_argument('--version', action='version', version=str(__version__))
 optional_args.add_argument("-t", "--cpu", dest="CPU", type=int, default=4, help='Default: 4 -- Number of CPUs available for run. ')

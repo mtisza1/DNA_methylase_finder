@@ -127,33 +127,31 @@ python DNA_methylase_finder/run_DNA_methylase_finder.py -it nucl -f MY_CONTIGS.f
 
 ## Help Menu
 ```
-usage: run_DNA_methylase_finder.py [-h] -it INPUT_TYPE 
-                                        -f INPUT_FILE 
-                                        -r RUN_TITLE 
-                                        [-t CPU]
-                                        [--meth_hmms METHYLASE_HMMS] [--cdd_plus_hmms CDD_PLUS_HMMS]
-                                        [--legit_domains LEGIT_DOMAIN_LIST] [--motif_blastp MOTIF_ANNOTATE_BLASTP]
-                                        [--subtype_hmms SUBTYPE_ANNOTATE_HMM] [--prod_args PROD_ARGS] [--pid PID]
-                                        [--cov COV] [--s_subunit_hmms S_SUBUNIT_HMM] [--re_hmms RE_HMM]
-                                        [--neighborhoods NEIGHBORHOODS] [--merge MERGE]
+usage: run_DNA_methylase_finder.py [-h] -it INPUT_TYPE -f INPUT_FILE -r RUN_TITLE [--version] [-t CPU]
+                                   [--meth_hmms METHYLASE_HMMS] [--cdd_plus_hmms CDD_PLUS_HMMS]
+                                   [--legit_domains LEGIT_DOMAIN_LIST] [--motif_blastp MOTIF_ANNOTATE_BLASTP]
+                                   [--subtype_hmms SUBTYPE_ANNOTATE_HMM] [--prod_args PROD_ARGS] [--pid PID] [--cov COV]
+                                   [--s_subunit_hmms S_SUBUNIT_HMM] [--re_hmms RE_HMM] [--neighborhoods NEIGHBORHOODS]
+                                   [--merge MERGE]
 
-DNA Methylase Finder, v1.0
+DNA Methylase Finder v1.0.1
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
 
- REQUIRED ARGUMENTS for DNA Methylase Finder, v1.0 :
+ REQUIRED ARGUMENTS for DNA Methylase Finder, v1.0.1:
   -it INPUT_TYPE, --input_type INPUT_TYPE
-                        OPTIONS: nucl, AA -- nucl PREFERRED! nucl is a nucleotide fasta file .fna extension. Each
-                        header must be unique before the first space character. AA is an amino acid fasta file with
-                        fasta file .fna extension. Each header must be unique before the first space character.
+                        OPTIONS: nucl, AA -- nucl PREFERRED! nucl is a nucleotide fasta file .fna extension. Each header
+                        must be unique before the first space character. AA is an amino acid fasta file with fasta file
+                        .fna extension. Each header must be unique before the first space character.
   -f INPUT_FILE, --input_file INPUT_FILE
                         nucl file with .fna extenstion, prodigal directory, or AA seq file with .faa extension.
   -r RUN_TITLE, --run_title RUN_TITLE
                         Name of this run. A directory of this name will be created. Must be unique from older runs or
                         older run will be renamed. Must consist of ONLY letters, numbers and underscores (_)
 
- OPTIONAL ARGUMENTS for DNA Methylase Finder, v1.0:
+ OPTIONAL ARGUMENTS for DNA Methylase Finder, v1.0.1:
+  --version             show program's version number and exit
   -t CPU, --cpu CPU     Default: 4 -- Number of CPUs available for run.
   --meth_hmms METHYLASE_HMMS
                         Default: standard database -- Hmmer-formatted file of HMMs of putative DNA methylases
@@ -169,8 +167,8 @@ optional arguments:
                         tag@@
   --prod_args PROD_ARGS
                         Default: -c -p meta -- arguments for prodigal in quotation marks. Only relvant for --input_type
-                        nucl (-it nucl). Make sure to keep settings to produce AA, nucleotide, and gtf files from
-                        prodigal step. Do not use memory or CPU arguments.
+                        nucl (-it nucl). Make sure to keep settings to produce AA, nucleotide, and gtf files from prodigal
+                        step. Do not use memory or CPU arguments.
   --pid PID             Default: 80 -- minimum threshold for AA Percent Identity of predicted methylase gene to REBASE
                         homolog to predict motif specificity
   --cov COV             Default: 80 -- minimum threshold for alignment coverage of predicted methylase gene to REBASE
