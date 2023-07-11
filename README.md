@@ -34,7 +34,7 @@ Nucleotide contigs/genomes (`.fna`) or amino acids (`.faa`).
 
 ## Installation instructions
 
-NOTE: I have only tested this on a Linux system. I imagine it will only work on Linux.
+NOTE: I have only tested this on Linux and MacOS (See extra installation instruction for MacOS)
 
 1. Make sure you have conda installed
 
@@ -55,7 +55,14 @@ NOTE: I have only tested this on a Linux system. I imagine it will only work on 
 
 NOTE: if you can't use conda, you could probably install the dependencies manually with little issue (listed in .yml file). Python 3 required.
 
-5. Download and unpack the databases (3.5 Gb compressed, 11 Gb decompressed):
+5. If you are using  **MacOS**, you need a few additional packages to make it work:
+
+`conda activate dna_methylase_finder`
+
+`conda install -c conda-forge -c bioconda sed grep findutils coreutils`
+
+
+6. Download and unpack the databases (3.5 Gb compressed, 11 Gb decompressed):
 
 ```
 # you should still be in the DNA_methylase_finder directory

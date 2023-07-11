@@ -3,7 +3,7 @@
 # script to thoroughly and accurately identify all DNA methylase genes from a protein fasta file ".faa". Headers in ".faa" file must be unique from each other before the first space character.
 
 echo "DNA Methylase Finder!"
-echo "Version 1.0"
+echo "Version 1.0.1"
 
 INPUT_TYPE=$1
 INPUT_FILE=$2
@@ -312,7 +312,7 @@ if [ -s ${INPUT_AA%.faa}.DNA_methylases.combined.faa ] && [ -s ${INPUT_AA%.faa}.
 				fi
 			else
 				CONTIG=$( echo "$LINE" | sed 's/\(.*\)_[0-9]\{1,9\}_/\1/' )
-				PROD_FMT=${LINE::-1}
+				PROD_FMT=${LINE::${#LINE}-1}
 				STARTQ=$( grep "${PROD_FMT} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f2 )
 				ENDQ=$( grep "${PROD_FMT} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f3 )
 				ORIENT=$( grep "${PROD_FMT} # " ${INPUT_NUCL%.fna}.genes.fna | sed 's/ //g' | cut -d "#" -f4 | sed 's/-1/-/g ; s/1/+/g' )

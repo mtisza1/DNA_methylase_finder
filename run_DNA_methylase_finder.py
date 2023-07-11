@@ -5,6 +5,8 @@ import sys, os
 import subprocess
 import importlib.util
 
+__version__='1.0.1'
+
 def str2bool(v):
     if isinstance(v, bool):
        return v
@@ -30,7 +32,7 @@ required_args.add_argument("-r", "--run_title", dest="run_title", type=str, requ
 #-#-#
 optional_args = parser.add_argument_group(' OPTIONAL ARGUMENTS for DNA Methylase Finder, v1.0')
 
-
+optional_args.add_argument('--version', action='version', version=str(__version__))
 optional_args.add_argument("-t", "--cpu", dest="CPU", type=int, default=4, help='Default: 4 -- Number of CPUs available for run. ')
 optional_args.add_argument("--meth_hmms", dest="METHYLASE_HMMs", type=str, default=str(find_methylase_script_path) + '/methylase_hmms/meth_hmms_v1.0', help='Default: standard database -- Hmmer-formatted file of HMMs of putative DNA methylases')
 optional_args.add_argument("--cdd_plus_hmms", dest="CDD_PLUS_HMMs", type=str, default=str(find_methylase_script_path) + '/cdd_plus_hmms/cdd_plus_hmms_v1.0', help='Default: standard database -- Hmmer-formatted file of HMMs of all CDD + putative DNA methylases')
