@@ -95,6 +95,13 @@ prodigal-2.6.3
 python DNA_methylase_finder/run_DNA_methylase_finder.py -it nucl -f MY_CONTIGS.fna -r MY_CONTIGS_DMF1 -t 16
 ```
 
+Run test AA file (distributed with repo) from Bacteroides fragilis to check everything is working:
+
+```
+python DNA_methylase_finder/run_DNA_methylase_finder.py -it AA -f DNA_methylase_finder/test_seqs/mtases_GCA_016889925.1.faa -r TEST_AAs
+```
+
+
 ## Summary table example
 
 |gene name | sub-type | contig | start position | end position | orientation | motif guess | AAI to top hit | AF to top hit
