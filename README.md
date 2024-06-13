@@ -101,6 +101,7 @@ Run test AA file (distributed with repo) from Bacteroides fragilis to check ever
 python DNA_methylase_finder/run_DNA_methylase_finder.py -it AA -f DNA_methylase_finder/test_seqs/mtases_GCA_016889925.1.faa -r TEST_AAs
 ```
 
+This test should return hits for all 13 sequences.
 
 ## Summary table example
 
